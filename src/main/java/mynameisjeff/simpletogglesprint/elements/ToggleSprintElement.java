@@ -18,7 +18,7 @@ public class ToggleSprintElement extends SimpleTextElement {
 
     @Override
     protected ElementData metadata() {
-        return new ElementData("Toggle Sprint", "Shows the status for SimpleToggleSprint.", "Combat");
+        return new ElementData("Toggle Sprint", "Shows the status for SimpleToggleSprint.", "Advanced");
     }
 
     @Override
