@@ -1,14 +1,14 @@
 [
   {
-    "modid": "simpletogglesprint",
-    "name": "SimpleToggleSprint",
+    "modid": "simpletogglesprintevergren",
+    "name": "Simple ToggleSprint",
     "description": "",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "https://github.com/My-Name-Is-Jeff/SimpleToggleSprint",
+    "url": "https://github.com/wyvest/SimpleToggleSprint/tree/evergreen",
     "updateUrl": "",
-    "authorList": ["My-Name-Is-Jeff"],
-    "credits": "Wyvest",
+    "authorList": ["My-Name-Is-Jeff", "Wyvest", "isXander"],
+    "credits": "Wyvest for Evergreen port. isXander for EvergreenHUD mod.",
     "logoFile": "",
     "screenshots": [],
     "dependencies": []

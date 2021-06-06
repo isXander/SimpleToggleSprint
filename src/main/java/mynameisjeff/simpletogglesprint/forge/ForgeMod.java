@@ -18,11 +18,11 @@
 
 package mynameisjeff.simpletogglesprint.forge;
 
-
-import club.sk1er.modcore.ModCoreInstaller;
 import club.sk1er.mods.core.ModCore;
+import club.sk1er.mods.core.ModCoreInstaller;
 import club.sk1er.mods.core.gui.notification.Notifications;
 import co.uk.isxander.evergreenhud.addon.AddonManager;
+import mynameisjeff.simpletogglesprint.SimpleToggleSprint;
 import mynameisjeff.simpletogglesprint.commands.SimpleToggleSprintCommand;
 import mynameisjeff.simpletogglesprint.core.Config;
 import net.minecraft.client.Minecraft;
@@ -31,6 +31,7 @@ import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent.InitGuiEvent.Post;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -45,11 +46,11 @@ import org.lwjgl.input.Mouse;
 
 import java.util.function.Supplier;
 
-@Mod(modid = SimpleToggleSprint.MODID, name = SimpleToggleSprint.MOD_NAME, version = SimpleToggleSprint.VERSION, acceptedMinecraftVersions = "[1.8.9]", clientSideOnly = true, dependencies = "required-before:evergreenhud")
-public class SimpleToggleSprint {
+@Mod(modid = ForgeMod.MODID, name = ForgeMod.MOD_NAME, version = ForgeMod.VERSION, acceptedMinecraftVersions = "[1.8.9]", clientSideOnly = true, dependencies = "required-before:evergreenhud")
+public class ForgeMod {
 
-    public static final String MODID = "simpletogglesprint";
-    public static final String MOD_NAME = "SimpleToggleSprint";
+    public static final String MODID = "simpletogglesprintevergreen";
+    public static final String MOD_NAME = "Simple ToggleSprint";
     public static final String VERSION = "1.2";
     public static final Minecraft mc = Minecraft.getMinecraft();
     public KeyBinding keySprint = new KeyBinding("Toggle Sprint", Keyboard.KEY_LMENU, "SimpleToggleSprint");
@@ -63,7 +64,7 @@ public class SimpleToggleSprint {
         ModCoreInstaller.initializeModCore(mc.mcDataDir);
         config.preload();
         MinecraftForge.EVENT_BUS.register(this);
-        AddonManager.getInstance().registerAddon(new mynameisjeff.simpletogglesprint.SimpleToggleSprint());
+        AddonManager.getInstance().registerAddon(new SimpleToggleSprint());
     }
 
     @Mod.EventHandler
@@ -110,17 +111,17 @@ public class SimpleToggleSprint {
     }
 
     public enum DisplayState {
-        DESCENDINGHELD("[Descending (key held)]", () -> mc.thePlayer.capabilities.isFlying && mc.thePlayer.isSneaking() && sneakHeld),
-        DESCENDINGTOGGLED("[Descending (toggled)]", () -> mc.thePlayer.capabilities.isFlying && Config.enabledToggleSneak && Config.toggleSneakState),
-        DESCENDING("[Descending (vanilla)]", () -> mc.thePlayer.capabilities.isFlying && mc.thePlayer.isSneaking()),
+        DESCENDING_HELD("[Descending (key held)]", () -> mc.thePlayer.capabilities.isFlying && mc.thePlayer.isSneaking() && sneakHeld),
+        DESCENDING_TOGGLED("[Descending (toggled)]", () -> mc.thePlayer.capabilities.isFlying && Config.enabledToggleSneak && Config.toggleSneakState),
+        DESCENDING_VANILLA("[Descending (vanilla)]", () -> mc.thePlayer.capabilities.isFlying && mc.thePlayer.isSneaking()),
         FLYING("[Flying]", () -> mc.thePlayer.capabilities.isFlying),
         RIDING("[Riding]", () -> mc.thePlayer.isRiding()),
-        SNEAKHELD("[Sneaking (key held)]", () -> mc.thePlayer.isSneaking() && sneakHeld),
-        TOGGLESNEAK("[Sneaking (toggled)]", () -> Config.enabledToggleSneak && Config.toggleSneakState),
-        SNEAKING("[Sneaking (vanilla)]", () -> mc.thePlayer.isSneaking()),
-        SPRINTHELD("[Sprinting (key held)]", () -> mc.thePlayer.isSprinting() && sprintHeld),
-        TOGGLESPRINT("[Sprinting (toggled)]", () -> Config.enabledToggleSprint && Config.toggleSprintState),
-        SPRINTING("[Sprinting (vanilla)]", () -> mc.thePlayer.isSprinting());
+        SNEAKING_HELD("[Sneaking (key held)]", () -> mc.thePlayer.isSneaking() && sneakHeld),
+        SNEAKING_TOGGLED("[Sneaking (toggled)]", () -> Config.enabledToggleSneak && Config.toggleSneakState),
+        SNEAKING_VANILLA("[Sneaking (vanilla)]", () -> mc.thePlayer.isSneaking()),
+        SPRINTING_HELD("[Sprinting (key held)]", () -> mc.thePlayer.isSprinting() && sprintHeld),
+        SPRINTING_TOGGLED("[Sprinting (toggled)]", () -> Config.enabledToggleSprint && Config.toggleSprintState),
+        SPRINTING_VANILLA("[Sprinting (vanilla)]", () -> mc.thePlayer.isSprinting());
 
         public final String displayText;
         public final Supplier<Boolean> displayCheck;
@@ -150,7 +151,7 @@ public class SimpleToggleSprint {
     }
 
     @SubscribeEvent
-    public void actionPerformedPost(net.minecraftforge.client.event.GuiScreenEvent.ActionPerformedEvent.Post event) {
+    public void actionPerformedPost(GuiScreenEvent.ActionPerformedEvent.Post event) {
         if (event.button.id == -69420 && (event.gui instanceof GuiOptions || event.gui instanceof GuiIngameMenu)) {
             ModCore.getInstance().getGuiHandler().open(config.gui());
         }

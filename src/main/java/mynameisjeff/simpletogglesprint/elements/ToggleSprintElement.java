@@ -3,12 +3,13 @@ package mynameisjeff.simpletogglesprint.elements;
 import co.uk.isxander.evergreenhud.elements.ElementData;
 import co.uk.isxander.evergreenhud.elements.RenderOrigin;
 import co.uk.isxander.evergreenhud.elements.type.SimpleTextElement;
-import mynameisjeff.simpletogglesprint.forge.SimpleToggleSprint;
+import mynameisjeff.simpletogglesprint.forge.ForgeMod;
 
 public class ToggleSprintElement extends SimpleTextElement {
+
     @Override
     protected String getValue() {
-        return SimpleToggleSprint.DisplayState.getActiveDisplay();
+        return ForgeMod.DisplayState.getActiveDisplay();
     }
 
     @Override
@@ -24,7 +25,7 @@ public class ToggleSprintElement extends SimpleTextElement {
     @Override
     public void render(float partialTicks, RenderOrigin origin) {
         if (origin == RenderOrigin.HUD) {
-            if (SimpleToggleSprint.DisplayState.getActiveDisplay().isEmpty())
+            if (ForgeMod.DisplayState.getActiveDisplay().isEmpty())
                 return;
         }
 

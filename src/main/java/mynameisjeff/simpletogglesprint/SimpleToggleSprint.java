@@ -7,12 +7,13 @@ import mynameisjeff.simpletogglesprint.elements.ToggleSprintElement;
 
 
 public class SimpleToggleSprint extends EvergreenAddon {
+
     public static final String MOD_VERSION = "1.0";
     public static final String MOD_NAME = "Simple Toggle Sprint (EvergreenHUD)";
 
     @Override
     public void init() {
-        EvergreenHUD.getInstance().getElementManager().registerElement("TOGGLE_SPRINT", ToggleSprintElement.class);
+        EvergreenHUD.getInstance().getElementManager().registerElement("LILY_TOGGLE_SPRINT", ToggleSprintElement.class);
     }
 
     @Override

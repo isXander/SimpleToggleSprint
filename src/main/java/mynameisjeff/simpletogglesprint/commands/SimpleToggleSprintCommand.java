@@ -19,7 +19,8 @@
 package mynameisjeff.simpletogglesprint.commands;
 
 import club.sk1er.mods.core.ModCore;
-import mynameisjeff.simpletogglesprint.forge.SimpleToggleSprint;
+import club.sk1er.mods.core.gui.notification.Notifications;
+import mynameisjeff.simpletogglesprint.forge.ForgeMod;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 
@@ -50,6 +51,7 @@ public class SimpleToggleSprintCommand extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
-        ModCore.getInstance().getGuiHandler().open(SimpleToggleSprint.config.gui());
+        ModCore.getInstance().getGuiHandler().open(ForgeMod.config.gui());
+        Notifications.INSTANCE.pushNotification("");
     }
 }

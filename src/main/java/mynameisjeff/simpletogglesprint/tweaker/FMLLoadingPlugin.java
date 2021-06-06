@@ -18,8 +18,6 @@
 
 package mynameisjeff.simpletogglesprint.tweaker;
 
-import club.sk1er.modcore.ModCoreInstaller;
-import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.MixinEnvironment;

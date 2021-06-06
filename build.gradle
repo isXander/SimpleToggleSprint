@@ -14,7 +14,7 @@ buildscript {
         flatDir dirs: 'libs'
     }
     dependencies {
-        classpath "com.github.asbyth:ForgeGradle:86b2392"
+        classpath "com.github.asbyth:ForgeGradle:d583588"
         classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
         classpath "com.github.LxGaming:MixinGradle:0.6-SNAPSHOT" //A custom fork of SpongeMixin that works with Gradle 6
     }
