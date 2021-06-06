@@ -13,12 +13,12 @@ public class ToggleSprintElement extends SimpleTextElement {
 
     @Override
     public String getDefaultDisplayTitle() {
-        return null;
+        return "";
     }
 
     @Override
     protected ElementData metadata() {
-        return new ElementData("SimpleToggleSprint", "Shows the status for SimpleToggleSprint.", "Combat");
+        return new ElementData("Toggle Sprint", "Shows the status for SimpleToggleSprint.", "Combat");
     }
 
     @Override
